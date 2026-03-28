@@ -1,437 +1,853 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deepak-Kumar | Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      overflow-x: hidden;
-    }
-    /* Floating Nav */
-    .navbar {
-      backdrop-filter: blur(12px);
-      background: rgba(15, 32, 39, 0.6);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    }
-    .navbar .nav-link {
-      transition: color 0.3s;
-    }
-    .navbar .nav-link:hover {
-      color: #00f !important;
-      text-shadow: 0 0 10px #0ff;
-    }
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .floating-shape {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(5px);
-      animation: float 6s ease-in-out infinite;
-    }
-    .shape1 { width: 120px; height: 120px; top: 15%; left: 10%; }
-    .shape2 { width: 200px; height: 200px; bottom: 10%; right: 15%; }
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-    .hero h1 {
-      background: linear-gradient(90deg, rgb(243, 243, 245), rgb(242, 240, 243), #0ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glowText 3s infinite alternate;
-    }
-    @keyframes glowText {
-      from { text-shadow: 0 0 10px #00f; }
-      to { text-shadow: 0 0 20px #0ff; }
-    }
-    .glass-card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-      transition: transform 0.4s, box-shadow 0.4s;
-    }
-    .glass-card:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 0 30px rgba(0, 170, 255, 0.7);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepak Kumar — SAP ABAP Developer</title>
+<meta name="description" content="Deepak Kumar — SAP ABAP Developer with 1+ years expertise in RICEF, S/4HANA, CDS, OData, AMDP, OOPs and HANA. Based in Durgapur, India.">
+<meta property="og:title" content="Deepak Kumar | SAP ABAP Developer">
+<meta property="og:description" content="SAP ABAP Consultant specializing in RICEF, S/4HANA, CDS, OData, AMDP, OOPs and SAP HANA.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#03050f">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════ TOKENS ═══════════════ */
+:root{
+  --cy:#00fff0;--gr:#00ff88;--pk:#ff2d78;
+  --pu:#9b5de5;--or:#ff6b35;--bl:#0496ff;--yw:#ffe600;
+  --sap:#0070F2;
+  --bg:#03050f;--bg2:#060916;--tx:#e8eaf6;--mu:#7a8ab2;
+}
+/* ═══════════════ BASE ═══════════════ */
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--tx);font-family:'Space Mono',monospace;overflow-x:hidden;cursor:none;}
+h1,h2,h3,h4,.sy{font-family:'Syne',sans-serif;}
+a{text-decoration:none;}
+button,a,[role=button]{cursor:pointer!important;}
+.sp{padding:100px 0;}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
-    /* === THIS IS THE NEW RULE FOR PORTFOLIO IMAGES === */
-    #portfolio .glass-card img {
-      width: 100%;
-      height: 220px; /* Adjust this height as you like */
-      object-fit: cover; /* This crops the image to fit without stretching */
-      /* We keep the rounded corners from your img-fluid class, this just ensures consistency */
-    }
-    /* === END OF NEW RULE === */
+/* ═══════════════ CURSOR ═══════════════ */
+#cd{width:10px;height:10px;background:var(--cy);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;}
+#cr{width:40px;height:40px;border:1.5px solid rgba(0,255,240,.42);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .1s ease-out,top .1s ease-out;}
 
-    /* Progress bars */
-    .progress-bar.sap { background: linear-gradient(90deg, #0077b6, #00b4d8); }
-    .progress-bar.js { background: linear-gradient(90deg, #f39c12, #f1c40f); }
-    .progress-bar.java { background: linear-gradient(90deg, #e74c3c, #ff7675); }
-    .progress-bar.cds { background: linear-gradient(90deg, #6a11cb, #2575fc); }
-    .progress-bar.api { background: linear-gradient(90deg, #16a085, #1abc9c); }
-    .progress-bar.odata { background: linear-gradient(90deg, #8e44ad, #9b59b6); }
-    @keyframes loadSkill {
-      from { width: 0; }
-      to { width: inherit; }
-    }
-    .cta-btn {
-      background: linear-gradient(90deg, #00f, #a0f);
-      color: #fff;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      box-shadow: 0 0 20px #00f;
-      transition: all 0.4s;
-    }
-    .cta-btn:hover {
-      box-shadow: 0 0 40px #a0f;
-      transform: scale(1.08);
-    }
-    section h2 {
-      background: linear-gradient(90deg, #0ff, #a0f);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
-    }
-    input, textarea {
-      background: rgba(255,255,255,0.1) !important;
-      color: #fff !important;
-      border: none !important;
-      border-radius: 10px !important;
-    }
-    input:focus, textarea:focus {
-      box-shadow: 0 0 15px #0ff !important;
-      outline: none !important;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: rgba(0,0,0,0.3);
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-    }
-    /* Scroll animations */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    /* Social Icons */
-    .social-icon {
-      transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
-    }
-    .social-icon.linkedin { color: #0A66C2; }
-    .social-icon.github { color: #fff; }
-    .social-icon.twitter { color: #1DA1F2; }
-    .social-icon.linkedin:hover {
-      color: #0A66C2;
-      transform: scale(1.2);
-      text-shadow: 0 0 15px #0A66C2;
-    }
-    .social-icon.github:hover {
-      color: #f5f5f5;
-      transform: scale(1.2);
-      text-shadow: 0 0 15px #fff;
-    }
-    .social-icon.twitter:hover {
-      color: #1DA1F2;
-      transform: scale(1.2);
-      text-shadow: 0 0 15px #1DA1F2;
-    }
-  </style>
+/* ═══════════════ BACKGROUND ═══════════════ */
+#bgc{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.au{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(110px);animation:drift 14s ease-in-out infinite alternate;will-change:transform;contain:strict;}
+.a1{width:560px;height:560px;background:radial-gradient(circle,rgba(155,93,229,.22),transparent 70%);top:-80px;left:-80px;}
+.a2{width:460px;height:460px;background:radial-gradient(circle,rgba(4,150,255,.18),transparent 70%);top:45%;right:-60px;animation-delay:-4s;}
+.a3{width:400px;height:400px;background:radial-gradient(circle,rgba(0,255,240,.13),transparent 70%);bottom:-50px;left:35%;animation-delay:-8s;}
+.a4{width:300px;height:300px;background:radial-gradient(circle,rgba(255,45,120,.15),transparent 70%);top:22%;left:52%;animation-delay:-6s;}
+@keyframes drift{0%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,-30px) scale(1.1);}100%{transform:translate(-30px,20px) scale(.95);}}
+
+/* ═══════════════ NAVBAR ═══════════════ */
+.navbar{background:rgba(3,5,15,.78)!important;backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.06);}
+.navbar-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;background:linear-gradient(90deg,var(--cy),var(--pu));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-link{color:var(--mu)!important;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;transition:color .3s;position:relative;}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:.5rem;width:0;height:1px;background:linear-gradient(90deg,var(--cy),var(--pu));transition:width .3s;}
+.nav-link:hover{color:var(--cy)!important;}
+.nav-link:hover::after{width:calc(100% - 1rem);}
+.navbar-toggler{border-color:rgba(0,255,240,.3);}
+.navbar-toggler-icon{filter:invert(1);}
+
+/* ═══════════════ HERO ═══════════════ */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;z-index:1;}
+.hn{font-size:clamp(48px,8vw,96px);font-weight:800;line-height:.9;letter-spacing:-3px;}
+.g1{background:linear-gradient(135deg,#fff 30%,var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.g2{background:linear-gradient(135deg,var(--pu),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.h3d{height:520px;}
+#hc{width:100%;height:100%;}
+@media(max-width:768px){.h3d{height:320px;}}
+.hf{opacity:0;transform:translateY(22px);animation:hfade .8s ease forwards;}
+@keyframes hfade{to{opacity:1;transform:none;}}
+
+/* ═══════════════ PILLS / BADGES ═══════════════ */
+.blv{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(0,255,240,.08),rgba(155,93,229,.08));border:1px solid rgba(0,255,240,.25);border-radius:100px;padding:6px 16px;font-size:.65rem;letter-spacing:2px;color:var(--cy);text-transform:uppercase;}
+.blv span{width:7px;height:7px;border-radius:50%;background:var(--gr);display:inline-block;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 7px var(--gr);}50%{opacity:.3;}}
+.rbadge{display:inline-block;padding:7px 20px;border-radius:4px;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;background:linear-gradient(90deg,var(--pu),var(--bl));color:#fff;}
+
+/* ═══════════════ BUTTONS ═══════════════ */
+.bg{background:linear-gradient(135deg,var(--cy),var(--bl));color:#030915;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;padding:13px 28px;display:inline-block;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));box-shadow:0 0 28px rgba(0,255,240,.3);transition:all .3s;}
+.bg:hover{transform:translateY(-3px);box-shadow:0 0 52px rgba(0,255,240,.5);color:#030915;}
+.bn{background:transparent;color:var(--tx);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);padding:13px 28px;display:inline-block;transition:all .3s;}
+.bn:hover{border-color:var(--pu);color:var(--pu);background:rgba(155,93,229,.06);}
+.bd{background:linear-gradient(135deg,var(--pk),var(--pu));color:#fff;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;padding:13px 28px;display:inline-flex;align-items:center;gap:8px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));box-shadow:0 0 26px rgba(155,93,229,.35);transition:all .3s;}
+.bd:hover{transform:translateY(-3px);box-shadow:0 0 52px rgba(255,45,120,.4);color:#fff;}
+.bd:disabled{opacity:.7;transform:none;}
+
+/* ═══════════════ STATS ═══════════════ */
+.sn{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;line-height:1;}
+.sl{font-size:.58rem;color:var(--mu);letter-spacing:1px;margin-top:3px;}
+.sdv{width:1px;background:rgba(255,255,255,.08);}
+
+/* ═══════════════ SECTION LABELS ═══════════════ */
+.stag{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.stag::before{content:'';width:28px;height:1px;background:currentColor;}
+.sti{font-family:'Syne',sans-serif;font-size:clamp(30px,5vw,54px);font-weight:800;letter-spacing:-2px;line-height:1;margin-bottom:52px;}
+.gc{background:linear-gradient(135deg,var(--pu),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.go{background:linear-gradient(135deg,var(--or),var(--yw));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.gbl{background:linear-gradient(135deg,var(--bl),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ggr{background:linear-gradient(135deg,var(--gr),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.gm{background:linear-gradient(135deg,var(--cy),var(--pu),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* ═══════════════ INFO BOX ═══════════════ */
+.ib{background:linear-gradient(135deg,rgba(0,255,240,.04),rgba(155,93,229,.04));border:1px solid rgba(255,255,255,.08);overflow:hidden;}
+.ir{display:flex;justify-content:space-between;align-items:center;padding:13px 20px;border-bottom:1px solid rgba(255,255,255,.05);}
+.ir:last-child{border-bottom:none;}
+.ik{font-size:.58rem;letter-spacing:2px;color:var(--mu);text-transform:uppercase;}
+.iv{font-size:.73rem;color:var(--tx);}
+.ivl{color:var(--gr);display:flex;align-items:center;gap:6px;}
+.ivl::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gr);animation:blink 2s infinite;display:inline-block;}
+
+/* ═══════════════ TECH BADGE STRIP ═══════════════ */
+.tbs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:38px;}
+.tb{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:6px;border:1px solid;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;font-weight:700;transition:transform .2s,box-shadow .2s;}
+.tb:hover{transform:translateY(-2px);}
+.tb-s4  {border-color:rgba(0,112,242,.4);color:#4da6ff;background:rgba(0,112,242,.08);}  .tb-s4:hover{box-shadow:0 0 18px rgba(0,112,242,.35);}
+.tb-abap{border-color:rgba(0,200,83,.35);color:#00C853;background:rgba(0,200,83,.07);}   .tb-abap:hover{box-shadow:0 0 18px rgba(0,200,83,.3);}
+.tb-cds {border-color:rgba(0,188,212,.35);color:#00BCD4;background:rgba(0,188,212,.07);} .tb-cds:hover{box-shadow:0 0 18px rgba(0,188,212,.3);}
+.tb-od  {border-color:rgba(255,109,0,.35);color:#FF6D00;background:rgba(255,109,0,.07);} .tb-od:hover{box-shadow:0 0 18px rgba(255,109,0,.3);}
+.tb-oop {border-color:rgba(170,0,255,.35);color:#AA00FF;background:rgba(170,0,255,.07);} .tb-oop:hover{box-shadow:0 0 18px rgba(170,0,255,.3);}
+.tb-amdp{border-color:rgba(255,23,68,.35);color:#FF1744;background:rgba(255,23,68,.07);} .tb-amdp:hover{box-shadow:0 0 18px rgba(255,23,68,.3);}
+.tb-hana{border-color:rgba(255,214,0,.35);color:#FFD600;background:rgba(255,214,0,.07);} .tb-hana:hover{box-shadow:0 0 18px rgba(255,214,0,.3);}
+
+/* ═══════════════ SKILL CARDS ═══════════════ */
+.skbg{background:var(--bg2);}
+.skc{background:var(--bg2);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s;border:1px solid rgba(255,255,255,.04);}
+.skc::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s;}
+.skc:hover::before{opacity:1;}
+.skc:hover{transform:translateY(-5px);}
+.s1::before{background:linear-gradient(135deg,rgba(0,255,240,.07),transparent);}
+.s2::before{background:linear-gradient(135deg,rgba(155,93,229,.07),transparent);}
+.s3::before{background:linear-gradient(135deg,rgba(255,45,120,.07),transparent);}
+.s4::before{background:linear-gradient(135deg,rgba(4,150,255,.07),transparent);}
+.s5::before{background:linear-gradient(135deg,rgba(255,107,53,.07),transparent);}
+.s6::before{background:linear-gradient(135deg,rgba(0,255,136,.07),transparent);}
+.skbar{height:2px;width:0;margin-bottom:18px;border-radius:2px;transition:width .9s ease;}
+.skc.in .skbar{width:100%;}
+.s1 .skbar{background:linear-gradient(90deg,var(--cy),var(--gr));}
+.s2 .skbar{background:linear-gradient(90deg,var(--pu),var(--pk));}
+.s3 .skbar{background:linear-gradient(90deg,var(--pk),var(--or));}
+.s4 .skbar{background:linear-gradient(90deg,var(--bl),var(--pu));}
+.s5 .skbar{background:linear-gradient(90deg,var(--or),var(--yw));}
+.s6 .skbar{background:linear-gradient(90deg,var(--gr),var(--cy));}
+.skico{width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:12px;border-radius:9px;}
+.s1 .skico{background:rgba(0,255,240,.1);}
+.s2 .skico{background:rgba(155,93,229,.1);}
+.s3 .skico{background:rgba(255,45,120,.1);}
+.s4 .skico{background:rgba(4,150,255,.1);}
+.s5 .skico{background:rgba(255,107,53,.1);}
+.s6 .skico{background:rgba(0,255,136,.1);}
+.skn{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:10px;}
+.skt{display:flex;flex-wrap:wrap;gap:4px;}
+.st{font-size:.52rem;letter-spacing:.8px;padding:3px 8px;border-radius:3px;text-transform:uppercase;border:1px solid;}
+.s1 .st{border-color:rgba(0,255,240,.2);color:rgba(0,255,240,.85);}
+.s2 .st{border-color:rgba(155,93,229,.2);color:rgba(155,93,229,.9);}
+.s3 .st{border-color:rgba(255,45,120,.2);color:rgba(255,45,120,.9);}
+.s4 .st{border-color:rgba(4,150,255,.2);color:rgba(4,150,255,.9);}
+.s5 .st{border-color:rgba(255,107,53,.2);color:rgba(255,107,53,.9);}
+.s6 .st{border-color:rgba(0,255,136,.2);color:rgba(0,255,136,.9);}
+
+/* ═══════════════ PROFICIENCY ═══════════════ */
+.pb{height:3px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+.pf{height:100%;border-radius:10px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.pf1{background:linear-gradient(90deg,var(--cy),var(--gr));}
+.pf2{background:linear-gradient(90deg,var(--pu),var(--pk));}
+.pf3{background:linear-gradient(90deg,var(--bl),var(--cy));}
+.pf4{background:linear-gradient(90deg,var(--pk),var(--or));}
+.pf5{background:linear-gradient(90deg,var(--or),var(--yw));}
+.pf6{background:linear-gradient(90deg,var(--gr),var(--bl));}
+.pl{font-size:.63rem;color:var(--tx);margin-bottom:6px;}
+.pp{font-size:.63rem;color:var(--mu);}
+
+/* ═══════════════ DIVIDER ═══════════════ */
+.dv3{position:relative;height:240px;overflow:hidden;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);}
+.dv3 canvas{width:100%;height:100%;display:block;}
+.dvo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;gap:6px;}
+.dvs{font-size:.58rem;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.22);}
+.dvm{font-family:'Syne',sans-serif;font-size:clamp(14px,2.8vw,26px);font-weight:800;background:linear-gradient(90deg,var(--cy),var(--pu),var(--pk),var(--or));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px;text-align:center;padding:0 20px;}
+@media(max-width:768px){.dv3{height:180px;}}
+
+/* ═══════════════ EXPERIENCE ═══════════════ */
+.tlw{position:relative;padding-left:32px;}
+.tlw::before{content:'';position:absolute;left:0;top:12px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cy),var(--pu),var(--pk),transparent);}
+.ec{position:relative;margin-bottom:50px;}
+.ec::before{content:'';position:absolute;left:-36px;top:8px;width:10px;height:10px;border-radius:50%;}
+.e1::before{background:var(--cy);box-shadow:0 0 14px var(--cy);}
+.e2::before{background:var(--pu);box-shadow:0 0 14px var(--pu);}
+.e3::before{background:var(--pk);box-shadow:0 0 14px var(--pk);}
+.e4::before{background:var(--or);box-shadow:0 0 12px var(--or);}
+.ep{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;}
+.e1 .ep{color:var(--cy);}.e2 .ep{color:var(--pu);}.e3 .ep{color:var(--pk);}.e4 .ep{color:var(--or);}
+.er{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:-.3px;margin-bottom:3px;}
+.eco{font-size:.68rem;color:var(--mu);margin-bottom:14px;}
+.ept{list-style:none;}
+.ept li{font-size:.68rem;color:var(--mu);line-height:1.85;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:10px;}
+.ept li::before{content:'▸';flex-shrink:0;}
+.e1 .ept li::before{color:var(--cy);}.e2 .ept li::before{color:var(--pu);}.e3 .ept li::before{color:var(--pk);}.e4 .ept li::before{color:var(--or);}
+
+/* ═══════════════ EDUCATION ═══════════════ */
+.edc{padding:28px 24px;position:relative;overflow:hidden;transition:transform .3s;border:1px solid rgba(255,255,255,.05);}
+.edc:hover{transform:scale(1.02);}
+.ed1{background:linear-gradient(135deg,rgba(0,255,240,.05),var(--bg));}
+.ed2{background:linear-gradient(135deg,rgba(155,93,229,.05),var(--bg));}
+.ed3{background:linear-gradient(135deg,rgba(255,107,53,.05),var(--bg));}
+.ed4{background:linear-gradient(135deg,rgba(0,255,136,.05),var(--bg));}
+.edac{height:3px;margin-bottom:18px;border-radius:3px;}
+.ed1 .edac{background:linear-gradient(90deg,var(--cy),var(--gr));}
+.ed2 .edac{background:linear-gradient(90deg,var(--pu),var(--pk));}
+.ed3 .edac{background:linear-gradient(90deg,var(--or),var(--yw));}
+.ed4 .edac{background:linear-gradient(90deg,var(--gr),var(--cy));}
+.edd{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:5px;}
+.edu{font-size:.66rem;color:var(--mu);line-height:1.6;margin-bottom:12px;}
+.edp{font-size:.53rem;letter-spacing:1px;padding:3px 10px;border:1px solid;border-radius:3px;}
+.ed1 .edp{border-color:rgba(0,255,240,.25);color:var(--cy);}
+.ed2 .edp{border-color:rgba(155,93,229,.25);color:var(--pu);}
+.ed3 .edp{border-color:rgba(255,107,53,.25);color:var(--or);}
+.ed4 .edp{border-color:rgba(0,255,136,.25);color:var(--gr);}
+
+/* ═══════════════ CONTACT ═══════════════ */
+.cbg{background:var(--bg2);position:relative;overflow:hidden;}
+.cbg::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(155,93,229,.11),transparent 70%);pointer-events:none;}
+.cc{display:flex;align-items:center;gap:12px;padding:14px 24px;font-size:.68rem;transition:all .3s;letter-spacing:.5px;position:relative;overflow:hidden;}
+.cc::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;}
+.cc:hover::before{opacity:1;}
+.cc:hover{transform:translateY(-4px);}
+.cc1{border:1px solid rgba(0,255,240,.2);color:var(--tx)!important;}  .cc1::before{background:linear-gradient(135deg,rgba(0,255,240,.07),transparent);}  .cc1:hover{border-color:var(--cy);color:var(--cy)!important;}
+.cc2{border:1px solid rgba(155,93,229,.2);color:var(--tx)!important;} .cc2::before{background:linear-gradient(135deg,rgba(155,93,229,.07),transparent);} .cc2:hover{border-color:var(--pu);color:var(--pu)!important;}
+.cc3{border:1px solid rgba(255,107,53,.2);color:var(--tx)!important;} .cc3::before{background:linear-gradient(135deg,rgba(255,107,53,.07),transparent);} .cc3:hover{border-color:var(--or);color:var(--or)!important;}
+.cc4{border:1px solid rgba(0,112,242,.25);color:var(--tx)!important;} .cc4::before{background:linear-gradient(135deg,rgba(0,112,242,.07),transparent);} .cc4:hover{border-color:var(--sap);color:#4da6ff!important;}
+
+/* ═══════════════ SCROLL REVEALS ═══════════════ */
+.fs{opacity:0;transform:translateX(-18px);transition:opacity .6s ease,transform .6s ease;}
+.fu{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+.fs.in,.fu.in{opacity:1;transform:none;}
+
+/* ═══════════════ FOOTER / MISC ═══════════════ */
+footer{background:var(--bg);border-top:1px solid rgba(255,255,255,.05);}
+.fb{font-family:'Syne',sans-serif;font-weight:800;background:linear-gradient(90deg,var(--cy),var(--pu),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,var(--cy),var(--pu));}
+</style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand text-warning fw-bold" href="#">Deepak Kumar</a>
-      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link text-light" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="#portfolio">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="#testimonials">Testimonials</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="#contact">Contact</a></li>
-        </ul>
+<div id="cd" aria-hidden="true"></div>
+<div id="cr" aria-hidden="true"></div>
+<div class="au a1" aria-hidden="true"></div>
+<div class="au a2" aria-hidden="true"></div>
+<div class="au a3" aria-hidden="true"></div>
+<div class="au a4" aria-hidden="true"></div>
+<canvas id="bgc" aria-hidden="true"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand" href="#hero" aria-label="Deepak Kumar home">DK.</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nv"
+      aria-controls="nv" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nv">
+      <ul class="navbar-nav ms-auto gap-lg-1 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3">
+          <a href="img/DEEPAK KUMAR.pdf" class="bg bi text-white" id="dlHero"><i class="bi bi-file-earmark-arrow-down" aria-hidden=""></i>Resume</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" aria-label="Introduction">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hf" style="animation-delay:0s">
+          <div class="blv mb-3"><span aria-hidden="true"></span>Available for Opportunities</div>
+        </div>
+        <h1 class="hn hf mb-0" style="animation-delay:.1s">
+          <span class="g1">DEEPAK</span><br><span class="g2">KUMAR</span>
+        </h1>
+        <div class="hf mt-3" style="animation-delay:.2s"><span class="rbadge">SAP ABAP Developer</span></div>
+        <p class="hf mt-3" style="color:var(--mu);font-size:.78rem;line-height:1.95;max-width:480px;animation-delay:.3s">
+          SAP ABAP Consultant with 1+ years of specialized expertise in RICEF objects,
+          S/4HANA, CDS, OData, AMDP &amp; enterprise application development across PP, MM, SD and FI modules.
+        </p>
+        <div class="hf d-flex flex-wrap gap-3 mt-4" style="animation-delay:.4s">
+          <a href="mailto:deepkrkush@gmail.com" class="bg">Get In Touch</a>
+          <a href="#experience" class="bn">View Work</a>
+		   <a href="img/DEEPAK KUMAR.pdf" class="bg bi text-white" id="dlHero"><i class="bi bi-file-earmark-arrow-down" aria-hidden=""></i> Download Resume</a>
+          
+        </div>
+        <div class="hf d-flex gap-4 mt-5 pt-4" style="border-top:1px solid rgba(255,255,255,.07);animation-delay:.5s">
+          <div>
+            <div class="sn" style="background:linear-gradient(135deg,var(--cy),var(--gr));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">1+</div>
+            <div class="sl">Years Exp</div>
+          </div>
+          <div class="sdv"></div>
+          <div>
+            <div class="sn" style="background:linear-gradient(135deg,var(--pu),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">7</div>
+            <div class="sl">SAP Tech Stack</div>
+          </div>
+          <div class="sdv"></div>
+          <div>
+            <div class="sn" style="background:linear-gradient(135deg,var(--or),var(--yw));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">15+</div>
+            <div class="sl">Tech Skills</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 hf" style="animation-delay:.15s">
+        <div class="h3d"><canvas id="hc" aria-hidden="true"></canvas></div>
       </div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero text-center text-light">
-    <div class="floating-shape shape1"></div>
-    <div class="floating-shape shape2"></div>
-    <div class="container fade-in">
-      <h1 class="display-4 fw-bold">Hi, I'm Deepak Kumar</h1>
-      <p class="lead">Software Engineer | SAP ABAP | Full Stack Developer</p>
-      <a href="img/DEEPAK KUMAR.pdf" class="cta-btn mt-3 d-inline-block">CV Download</a>
-
-      <div class="mt-4">
-        <a href="https://www.linkedin.com/in/deepak-kumar-21623a228/" target="_blank" class="mx-2 social-icon linkedin">
-          <i class="fab fa-linkedin fa-2x"></i>
-        </a>
-        <a href="https://github.com/deepak-kumar-87/SAP-ABAP" target="_blank" class="mx-2 social-icon github">
-          <i class="fab fa-github fa-2x"></i>
-        </a>
-        <a href="https://x.com/deepak_kr_kush?s=21" target="_blank" class="mx-2 social-icon twitter">
-          <i class="fab fa-twitter fa-2x"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="py-5">
-    <div class="container fade-in">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h2>About Me</h2>
-            <p>Proficient in SAP implementation, specializing in the development and deployment of RICEF objects (Reports,
-              Interfaces, Conversions, Enhancements, Forms, Reports & Workflow), while concurrently advancing expertise in
-              ABAP on HANA. This pursuit enriches contributions to streamlined business operations and process optimization.</p>
-          </div>
-        </div>
-        <div class="col-md-6 text-center fade-in">
-          <img src="img/deepak.jpeg" alt="Profile" class="img-fluid rounded-6 shadow" style="width: 250px;">
+<!-- ABOUT -->
+<section id="about" class="sp" style="position:relative;z-index:1;" aria-label="About">
+  <div class="container">
+    <div class="stag" style="color:var(--cy)">01 — About Me</div>
+    <h2 class="sti">Who I <span class="gc">Am</span></h2>
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-7">
+        <p style="color:var(--mu);font-size:.78rem;line-height:1.95;">
+          I'm a <span style="color:var(--cy)">SAP ABAP Developer</span> based in Durgapur, India,
+          with hands-on expertise in enterprise-grade SAP solutions. My journey evolved from a deep
+          passion for technology into specialization in SAP's ABAP ecosystem.
+        </p>
+        <p class="mt-3" style="color:var(--mu);font-size:.78rem;line-height:1.95;">
+          I specialize in <span style="color:var(--pu)">RICEF development</span> — Reports,
+          Interfaces, Conversions, Enhancements and Forms — across
+          <span style="color:var(--cy)">SAP ECC/ERP</span> and <span style="color:var(--cy)">S/4HANA</span>.
+          I build CDS views, develop OData services, write AMDP procedures, and integrate cross-functional modules.
+        </p>
+        <p class="mt-3" style="color:var(--mu);font-size:.78rem;line-height:1.95;">
+          Beyond SAP, I hold a solid foundation in <span style="color:var(--or)">Java, OOPs, Spring</span>
+          and full-stack development — bridging enterprise and modern web technologies.
+        </p>
+        <div class="mt-4 d-flex gap-3 flex-wrap">
+          <a href="https://www.linkedin.com/in/deepak-kumar-21623a228/" target="_blank" rel="noopener noreferrer"
+            class="bn d-inline-flex align-items-center gap-2">
+            <i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="skills" class="py-5">
-    <div class="container fade-in">
-      <h2 class="text-center mb-4">Skills</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5>SAP ABAP</h5>
-            <div class="progress">
-              <div class="progress-bar sap" style="width: 90%">90%</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5>JavaScript</h5>
-            <div class="progress">
-              <div class="progress-bar js" style="width: 85%">85%</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row g-4 mt-3">
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5>Java</h5>
-            <div class="progress">
-              <div class="progress-bar java" style="width: 80%">80%</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5>CDS</h5>
-            <div class="progress">
-              <div class="progress-bar cds" style="width: 90%">90%</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row g-4 mt-3">
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5>API</h5>
-            <div class="progress">
-              <div class="progress-bar api" style="width: 85%">85%</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5>OData</h5>
-            <div class="progress">
-              <div class="progress-bar odata" style="width: 80%">80%</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="py-5">
-    <div class="container fade-in">
-      <h2 class="text-center mb-4">Services</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="glass-card text-center">
-            <i class="fab fa-node-js fa-2x mb-2 text-warning"></i><h5>Web Development</h5>
-            <p>Responsive and modern web solutions using latest tech stack.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="glass-card text-center">
-            <i class="fas fa-code fa-2x mb-2 text-primary"></i><h5>SAP ABAP</h5>
-            <p>Custom reports, interfaces, enhancements, and optimizations.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="glass-card text-center">
-            <i class="fab fa-react fa-2x mb-2 text-info"></i><h5>UI/UX Design</h5>
-            <p>Futuristic, minimal, and professional design solutions.</p>
-          </div>
+      <div class="col-lg-5">
+        <div class="ib" role="table" aria-label="Personal information">
+          <div class="ir"><span class="ik">Name</span><span class="iv">Deepak Kumar</span></div>
+          <div class="ir"><span class="ik">Role</span><span class="iv">SAP ABAP Executive</span></div>
+          <div class="ir"><span class="ik">Location</span><span class="iv">Durgapur, West Bengal</span></div>
+          <div class="ir"><span class="ik">Email</span><span class="iv"><a href="mailto:deepkrkush@gmail.com" style="color:var(--tx)">deepkrkush@gmail.com</a></span></div>
+          <div class="ir"><span class="ik">Phone</span><span class="iv"><a href="tel:+918709499297" style="color:var(--tx)">+91-8709499297</a></span></div>
+          <div class="ir"><span class="ik">Degree</span><span class="iv">MCA — 76.56%</span></div>
+          <div class="ir"><span class="ik">Status</span><span class="iv"><span class="ivl" role="status">Open to Work</span></span></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="portfolio" class="py-5">
-    <div class="container fade-in">
-      <h2 class="text-center mb-4">Portfolio</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="glass-card">
-            <img src="img/hyd.jpeg" class="img-fluid rounded mb-3">
-            <h5><i class="fas fa-location-dot"></i> Hyderabad - (Telangana)</h5>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="glass-card">
-            <img src="img/dhurwa.jpeg" class="img-fluid rounded mb-3">
-            <h5><i class="fas fa-location-dot"></i> Ranchi - (JH)</h5>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="glass-card">
-            <img src="img/noida.jpeg" class="img-fluid rounded mb-3">
-            <h5><i class="fas fa-location-dot"></i> Noida - (UP)</h5>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="glass-card">
-            <img src="img/d1.jpg" class="img-fluid rounded mb-3">
-            <h5><i class="fas fa-location-dot"></i> Delhi</h5>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="glass-card">
-            <img src="img/dd1.jpg" class="img-fluid rounded mb-3">
-            <h5><i class="fas fa-location-dot"></i> Durgapur - (WB)</h5>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="glass-card">
-            <img src="img/b1.jpg" class="img-fluid rounded mb-3">
-            <h5><i class="fas fa-location-dot"></i> Bengaluru - (Karnataka)</h5>
-          </div>
-        </div>
+<!-- SKILLS -->
+<section id="skills" class="sp skbg" style="position:relative;z-index:1;" aria-label="Skills">
+  <div class="container">
+    <div class="stag" style="color:var(--pu)">02 — Skills</div>
+    <h2 class="sti">Technical <span class="go">Arsenal</span></h2>
+
+    <!-- 7-badge SAP tech strip -->
+    <div class="tbs" role="list" aria-label="SAP technology stack">
+      <span class="tb tb-s4" role="listitem">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><polygon points="6.5,1 12,6.5 6.5,12 1,6.5" fill="#0070F2"/></svg>S/4HANA
+      </span>
+      <span class="tb tb-abap" role="listitem">
+        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true"><text x="0" y="11" font-size="11" font-weight="bold" fill="#00C853" font-family="monospace">&lt;&gt;</text></svg>ABAP
+      </span>
+      <span class="tb tb-cds" role="listitem">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><ellipse cx="6.5" cy="3.5" rx="5.5" ry="2" fill="#00BCD4"/><ellipse cx="6.5" cy="6.5" rx="5.5" ry="2" fill="#00BCD4" opacity=".7"/><ellipse cx="6.5" cy="9.5" rx="5.5" ry="2" fill="#00BCD4" opacity=".4"/></svg>CDS
+      </span>
+      <span class="tb tb-od" role="listitem">
+        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true"><line x1="1" y1="6.5" x2="9.5" y2="6.5" stroke="#FF6D00" stroke-width="2" stroke-linecap="round"/><polygon points="8,3.5 13,6.5 8,9.5" fill="#FF6D00"/></svg>OData
+      </span>
+      <span class="tb tb-oop" role="listitem">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><rect x="1" y="1" width="7" height="7" stroke="#AA00FF" stroke-width="1.5" fill="none"/><rect x="5" y="5" width="7" height="7" stroke="#AA00FF" stroke-width="1.5" fill="none" opacity=".6"/></svg>OOPs
+      </span>
+      <span class="tb tb-amdp" role="listitem">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 12.5C6.5 12.5 1.5 8.5 2.5 4.5C3.5 1.5 5.5 2.5 6.5 4.5C7.5 2.5 9.5 1.5 10.5 4.5C11.5 8.5 6.5 12.5 6.5 12.5Z" fill="#FF1744"/></svg>AMDP
+      </span>
+      <span class="tb tb-hana" role="listitem">
+        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true"><rect x="3" y="2.5" width="8" height="8" stroke="#FFD600" stroke-width="1.5" fill="none"/><rect x="5" y="4.5" width="4" height="4" fill="#FFD600"/><line x1="1" y1="4.5" x2="3" y2="4.5" stroke="#FFD600" stroke-width="1.5"/><line x1="1" y1="8.5" x2="3" y2="8.5" stroke="#FFD600" stroke-width="1.5"/><line x1="11" y1="4.5" x2="13" y2="4.5" stroke="#FFD600" stroke-width="1.5"/><line x1="11" y1="8.5" x2="13" y2="8.5" stroke="#FFD600" stroke-width="1.5"/></svg>HANA
+      </span>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-md-6 col-lg-4"><div class="skc s1 fu h-100"><div class="skbar"></div><div class="skico" aria-hidden="true">⚡</div><div class="skn">Core ABAP</div><div class="skt"><span class="st">ABAP</span><span class="st">OOPs</span><span class="st">SQL</span><span class="st">BDC</span><span class="st">BAPI</span><span class="st">LSMW</span></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="skc s2 fu h-100"><div class="skbar"></div><div class="skico" aria-hidden="true">📊</div><div class="skn">Reports &amp; Forms</div><div class="skt"><span class="st">ALV Reports</span><span class="st">Classical</span><span class="st">Interactive</span><span class="st">Smart Forms</span><span class="st">Adobe Forms</span></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="skc s3 fu h-100"><div class="skbar"></div><div class="skico" aria-hidden="true">🔗</div><div class="skn">Integration &amp; APIs</div><div class="skt"><span class="st">CDS</span><span class="st">OData</span><span class="st">AMDP</span><span class="st">BADI</span><span class="st">Module Pool</span></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="skc s4 fu h-100"><div class="skbar"></div><div class="skico" aria-hidden="true">🏗️</div><div class="skn">SAP Platforms</div><div class="skt"><span class="st">SAP ECC/ERP</span><span class="st">S/4HANA</span><span class="st">SAP GUI</span><span class="st">Eclipse</span><span class="st">HANA Studio</span></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="skc s5 fu h-100"><div class="skbar"></div><div class="skico" aria-hidden="true">📦</div><div class="skn">SAP Modules</div><div class="skt"><span class="st">PP</span><span class="st">MM</span><span class="st">SD</span><span class="st">FI</span><span class="st">GTS</span><span class="st">SUS</span></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="skc s6 fu h-100"><div class="skbar"></div><div class="skico" aria-hidden="true">☕</div><div class="skn">Programming</div><div class="skt"><span class="st">Core Java</span><span class="st">Adv. Java</span><span class="st">Spring</span><span class="st">HTML</span><span class="st">JS</span></div></div></div>
+    </div>
+
+    <div class="mt-5 pt-2">
+      <h3 class="sy fw-bold mb-4" style="font-size:1.25rem;letter-spacing:-.5px;">
+        Proficiency <span style="background:linear-gradient(90deg,var(--cy),var(--pu));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Levels</span>
+      </h3>
+      <div class="row g-4" id="pw">
+        <div class="col-md-6"><div class="d-flex justify-content-between mb-1"><span class="pl">ABAP Development</span><span class="pp">90%</span></div><div class="pb" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><div class="pf pf1" data-w="90"></div></div></div>
+        <div class="col-md-6"><div class="d-flex justify-content-between mb-1"><span class="pl">SAP S/4HANA</span><span class="pp">80%</span></div><div class="pb" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><div class="pf pf2" data-w="80"></div></div></div>
+        <div class="col-md-6"><div class="d-flex justify-content-between mb-1"><span class="pl">Smart Forms &amp; Reports</span><span class="pp">85%</span></div><div class="pb" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><div class="pf pf3" data-w="85"></div></div></div>
+        <div class="col-md-6"><div class="d-flex justify-content-between mb-1"><span class="pl">CDS, OData &amp; AMDP</span><span class="pp">75%</span></div><div class="pb" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><div class="pf pf4" data-w="75"></div></div></div>
+        <div class="col-md-6"><div class="d-flex justify-content-between mb-1"><span class="pl">BDC &amp; BAPI</span><span class="pp">85%</span></div><div class="pb" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><div class="pf pf5" data-w="85"></div></div></div>
+        <div class="col-md-6"><div class="d-flex justify-content-between mb-1"><span class="pl">Java / Full Stack</span><span class="pp">70%</span></div><div class="pb" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"><div class="pf pf6" data-w="70"></div></div></div>
       </div>
     </div>
-  </section>
-    
-  <section id="testimonials" class="py-5">
-    <div class="container fade-in">
-      <h2 class="text-center mb-4">Testimonials</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="glass-card">
-            <p>“Deepak delivered our project on time with futuristic design and perfect coding standards.”</p>
-            <small class="text-danger">- AMPL Resources Pvt Ltd.</small>
-          </div>
+  </div>
+</section>
+
+<!-- DIVIDER 3D -->
+<div class="dv3" style="position:relative;z-index:1;" aria-hidden="true">
+  <canvas id="dvc"></canvas>
+  <div class="dvo">
+    <div class="dvs">Professional Journey</div>
+    <div class="dvm">Building Enterprise Solutions with SAP</div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sp" style="position:relative;z-index:1;" aria-label="Work experience">
+  <div class="container">
+    <div class="stag" style="color:var(--pk)">03 — Experience</div>
+    <h2 class="sti">Work <span class="gbl">History</span></h2>
+    <div class="row"><div class="col-lg-10">
+      <div class="tlw">
+        <div class="ec e1 fs">
+          <div class="ep">July 2025 — Present</div>
+          <div class="er">Executive — SAP ABAP</div>
+          <div class="eco">Skywise Technologies Pvt Ltd (Sister Co. of AMPL)</div>
+          <ul class="ept">
+            <li>Z tables, Domains, Data elements, Structures, Views &amp; Search Helps via Data Dictionary</li>
+            <li>Custom ALV, Classical &amp; Interactive reports; modified GTS Preference calculation screens</li>
+            <li>BDC full lifecycle: recording, data prep, error handling, execution &amp; monitoring</li>
+            <li>BAPI integrations — finding, calling, handling results with proper Commit Work</li>
+            <li>Smart Form customizations across PP, MM, SD and FI modules for multiple clients</li>
+            <li>Debugged Supplier Self-Service (SUS) system for field mapping &amp; SAP integration</li>
+            <li>Advanced OOPs ABAP, Core Data Services (CDS), AMDP and OData API development</li>
+          </ul>
         </div>
-        <div class="col-md-6">
-          <div class="glass-card">
-            <p>“Professional, innovative, and highly reliable. I highly recommend working with him.”</p>
-            <small class="text-danger">- SAVIC Technologies Pvt Ltd.</small>
-          </div>
+        <div class="ec e2 fs">
+          <div class="ep">Sep 2024 — June 2025</div>
+          <div class="er">Executive — SAP ABAP</div>
+          <div class="eco">Bengal Natural Resources Pvt Ltd (Sister Co. of AMPL)</div>
+          <ul class="ept">
+            <li>ALV, Classical and Interactive custom report development and maintenance</li>
+            <li>Full Data Dictionary management: Z tables, Domains, Data Elements, Views</li>
+            <li>Automated email dispatch scripts for designated recipients</li>
+            <li>Technical documentation: functional specs, technical specs, and test plans</li>
+            <li>Unit testing, integration testing, and performance tuning</li>
+          </ul>
+        </div>
+        <div class="ec e3 fs">
+          <div class="ep">Oct 2023 — Sep 2024</div>
+          <div class="er">Intern — SAP ABAP</div>
+          <div class="eco">Savic Technologies Pvt Ltd, Noida</div>
+          <ul class="ept">
+            <li>Worked on MaxCare projects — clearing tickets on diverse SAP objects</li>
+            <li>Delivered implementation objects per requirements within timelines</li>
+          </ul>
+        </div>
+        <div class="ec e4 fs">
+          <div class="ep">Oct 2022 — Jan 2023</div>
+          <div class="er">Software Engineer Intern</div>
+          <div class="eco">Path Infotech, Noida</div>
+          <ul class="ept">
+            <li>Collaborated on software application design and development</li>
+            <li>Code reviews, testing, debugging and standards compliance</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </div></div>
+  </div>
+</section>
 
-  <section id="contact" class="py-5">
-    <div class="container fade-in">
-      <h2 class="text-center mb-4">Contact Me</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="glass-card">
-            <form>
-              <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Your Name">
-              </div>
-              <div class="mb-3">
-                <input type="email" class="form-control" placeholder="Your Email">
-              </div>
-              <div class="mb-3">
-                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
-              </div>
-              <button type="submit" class="cta-btn">Send Message</button>
-            </form>
-          </div>
-        </div>
-      </div>
+<!-- EDUCATION -->
+<section id="education" class="sp" style="background:var(--bg2);position:relative;z-index:1;" aria-label="Education">
+  <div class="container">
+    <div class="stag" style="color:var(--or)">04 — Education</div>
+    <h2 class="sti">Academic <span class="ggr">Foundation</span></h2>
+    <div class="row g-2">
+      <div class="col-md-6"><div class="edc ed1 fu h-100"><div class="edac"></div><div class="edd">Master of Computer Applications</div><div class="edu">Dr. Shyama Prasad Mukherjee University, Ranchi</div><div class="d-flex flex-wrap gap-2"><span class="edp">Aug 2019 – Jul 2022</span><span class="edp">76.56%</span></div></div></div>
+      <div class="col-md-6"><div class="edc ed2 fu h-100"><div class="edac"></div><div class="edd">Bachelor of Computer Applications</div><div class="edu">Jharkhand Rai University, Ranchi</div><div class="d-flex flex-wrap gap-2"><span class="edp">Aug 2015 – Jul 2018</span><span class="edp">72.1%</span></div></div></div>
+      <div class="col-md-6"><div class="edc ed3 fu h-100"><div class="edac"></div><div class="edd">SAP ABAP Certification</div><div class="edu">Savic Technologies Pvt Ltd, Noida</div><div class="d-flex flex-wrap gap-2"><span class="edp">Certified</span></div></div></div>
+      <div class="col-md-6"><div class="edc ed4 fu h-100"><div class="edac"></div><div class="edd">Java Development</div><div class="edu">Naresh i Technologies, Hyderabad</div><div class="d-flex flex-wrap gap-2"><span class="edp">Certified</span><span class="edp">Mar–Sep 2023</span></div></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2025 Deepak Kumar | SAP ABAP - Portfolio</p>
-    <div class="mt-2">
-      <a href="https://www.linkedin.com/in/deepak-kumar-21623a228/" target="_blank" class="mx-2 social-icon linkedin">
-        <i class="fab fa-linkedin fa-lg"></i>
-      </a>
-      <a href="https://github.com/deepak-kumar-87/SAP-ABAP" target="_blank" class="mx-2 social-icon github">
-        <i class="fab fa-github fa-lg"></i>
-      </a>
-      <a href="https://x.com/deepak_kr_kush?s=21" target="_blank" class="mx-2 social-icon twitter">
-        <i class="fab fa-twitter fa-lg"></i>
-      </a>
+<!-- CONTACT -->
+<section id="contact" class="sp cbg" style="position:relative;z-index:1;" aria-label="Contact">
+  <div class="container text-center">
+    <div class="stag justify-content-center" style="color:var(--gr)">05 — Contact</div>
+    <h2 class="sti">Let's <span class="gm">Connect</span></h2>
+    <p style="color:var(--mu);font-size:.78rem;line-height:1.9;max-width:580px;margin:0 auto 44px">
+      I'm actively seeking new SAP opportunities. Whether it's a project, a role, or just a conversation — let's talk.
+    </p>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <a href="mailto:deepkrkush@gmail.com" class="cc cc1"><i class="bi bi-envelope-fill fs-5" aria-hidden="true"></i> deepkrkush@gmail.com</a>
+      <a href="tel:+918709499297" class="cc cc2"><i class="bi bi-phone-fill fs-5" aria-hidden="true"></i> +91-8709499297</a>
+      <a href="https://maps.google.com/?q=Durgapur,West+Bengal,India" target="_blank" rel="noopener noreferrer" class="cc cc3"><i class="bi bi-geo-alt-fill fs-5" aria-hidden="true"></i> Durgapur, India</a>
+      <a href="https://www.linkedin.com/in/deepak-kumar-21623a228/" target="_blank" rel="noopener noreferrer" class="cc cc4"><i class="bi bi-linkedin fs-5" aria-hidden="true"></i> LinkedIn</a>
     </div>
-  </footer>
+    <div class="mt-4">
+      <a href="img/DEEPAK KUMAR.pdf" class="bg bi text-white" id="dlHero"><i class="bi bi-file-earmark-arrow-down" aria-hidden=""></i> Download My Resume</a>
+    </div>
+  </div>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Scroll animations
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = { threshold: 0.2 };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, appearOptions);
-    faders.forEach(fader => { appearOnScroll.observe(fader); });
-  </script>
+<!-- FOOTER -->
+<footer class="py-4 text-center" style="position:relative;z-index:1;">
+  <div class="container">
+    <p style="font-size:.62rem;color:var(--mu);letter-spacing:1px;">
+      Designed &amp; Built — <span class="fb">Deepak Kumar</span> · SAP ABAP Developer · Durgapur, India
+    </p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+'use strict';
+
+/* ─── CURSOR ─── */
+const cd = document.getElementById('cd'), cr = document.getElementById('cr');
+document.addEventListener('mousemove', e => {
+  cd.style.left = cr.style.left = e.clientX + 'px';
+  cd.style.top  = cr.style.top  = e.clientY + 'px';
+});
+
+/* ─── PDF RESUME ─── */
+const RHTML = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Arial,sans-serif;font-size:12px;color:#1a1a2e;line-height:1.6;padding:34px 38px;}
+.h{border-bottom:3px solid #9b5de5;padding-bottom:12px;margin-bottom:16px;}
+h1{font-size:24px;color:#03050f;letter-spacing:-1px;}
+.r{font-size:11px;color:#9b5de5;letter-spacing:2px;text-transform:uppercase;margin:4px 0 8px;}
+.c{display:flex;gap:14px;font-size:10.5px;color:#555;flex-wrap:wrap;}
+h2{font-size:10.5px;letter-spacing:3px;text-transform:uppercase;color:#9b5de5;border-bottom:1px solid #ddd;padding-bottom:3px;margin:14px 0 8px;}
+.ei{margin-bottom:11px;} .et{font-weight:600;font-size:12.5px;} .es{font-size:10.5px;color:#777;margin-bottom:3px;}
+ul{padding-left:15px;} ul li{font-size:11px;color:#444;margin-bottom:2px;}
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.deg{font-weight:600;font-size:11.5px;} .uni{font-size:10.5px;color:#777;}
+.sr{display:flex;flex-wrap:wrap;gap:4px;} .sp{background:#f0eeff;color:#5a35aa;padding:2px 8px;border-radius:10px;font-size:10px;}
+.ft{margin-top:20px;font-size:9.5px;color:#999;text-align:center;border-top:1px solid #eee;padding-top:8px;}
+.obj{font-size:11px;color:#444;line-height:1.7;}
+</style></head><body>
+<div class="h"><h1>DEEPAK KUMAR</h1><div class="r">SAP ABAP Developer · Executive</div>
+<div class="c"><span>deepkrkush@gmail.com</span><span>+91-8709499297</span><span>Durgapur, West Bengal, India</span><span>linkedin.com/in/deepak-kumar</span></div></div>
+<h2>Objective</h2>
+<p class="obj">Accomplished SAP ABAP Consultant with 1+ years of expertise in RICEF, S/4HANA, CDS, OData, AMDP, OOPs ABAP and SAP HANA. Seeking opportunities to leverage analytical and problem-solving skills in enterprise SAP development.</p>
+<h2>Professional Experience</h2>
+<div class="ei"><div class="et">Executive — SAP ABAP | Skywise Technologies Pvt Ltd</div><div class="es">July 2025 – Present</div>
+<ul><li>Data Dictionary: Z tables, Domains, Data elements, Structures, Views, Search Help</li>
+<li>ALV, Classical, Interactive reports; GTS Preference calculation screen modifications</li>
+<li>BDC full lifecycle; BAPI integrations; Smart Forms for PP/MM/SD/FI; SUS debugging</li>
+<li>OOPs ABAP, CDS views, AMDP stored procedures, OData service development</li></ul></div>
+<div class="ei"><div class="et">Executive — SAP ABAP | Bengal Natural Resources Pvt Ltd</div><div class="es">Sep 2024 – June 2025</div>
+<ul><li>Custom ALV/Classical/Interactive reports; full Data Dictionary management</li>
+<li>Email automation; technical documentation; unit &amp; integration testing</li></ul></div>
+<div class="ei"><div class="et">Intern — SAP ABAP | Savic Technologies Pvt Ltd, Noida</div><div class="es">Oct 2023 – Sep 2024</div>
+<ul><li>MaxCare project ticket resolution; implementation object delivery on schedule</li></ul></div>
+<div class="ei"><div class="et">Software Engineer Intern | Path Infotech, Noida</div><div class="es">Oct 2022 – Jan 2023</div>
+<ul><li>Software design, development, code reviews, testing &amp; debugging</li></ul></div>
+<h2>Technical Skills</h2>
+<div class="sr"><span class="sp">ABAP</span><span class="sp">OOPs ABAP</span><span class="sp">BDC</span><span class="sp">BAPI</span><span class="sp">LSMW</span><span class="sp">ALV Reports</span><span class="sp">Smart Forms</span><span class="sp">Adobe Forms</span><span class="sp">CDS</span><span class="sp">OData</span><span class="sp">AMDP</span><span class="sp">BADI</span><span class="sp">S/4HANA</span><span class="sp">SAP ECC</span><span class="sp">HANA Studio</span><span class="sp">Core Java</span><span class="sp">Spring</span><span class="sp">HTML</span><span class="sp">JS</span></div>
+<h2>Education</h2>
+<div class="eg">
+<div><div class="deg">MCA</div><div class="uni">Dr. Shyama Prasad Mukherjee University, Ranchi — 76.56%</div></div>
+<div><div class="deg">BCA</div><div class="uni">Jharkhand Rai University, Ranchi — 72.1%</div></div></div>
+<h2>Certifications</h2>
+<ul><li>SAP ABAP — Savic Technologies Pvt Ltd</li><li>Java Development — Naresh i Technologies, Hyderabad (Mar–Sep 2023)</li></ul>
+<div class="ft">Deepak Kumar · deepkrkush@gmail.com · +91-8709499297 · Durgapur, India</div>
+</body></html>`;
+
+function downloadResume(btn) {
+  if (!btn) return;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Generating…';
+  btn.disabled = true;
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;left:-9999px;top:0;width:210mm;background:#fff;';
+  wrap.innerHTML = RHTML.replace(/<!DOCTYPE[^>]*>|<html[^>]*>|<\/html>|<head>[\s\S]*?<\/head>/gi, '');
+  document.body.appendChild(wrap);
+  html2pdf().set({
+    margin:[10,12,10,12], filename:'Deepak_Kumar_SAP_ABAP_Resume.pdf',
+    image:{type:'jpeg',quality:.98}, html2canvas:{scale:2,useCORS:true,logging:false},
+    jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
+  }).from(wrap).save().then(() => {
+    document.body.removeChild(wrap);
+    btn.innerHTML = '<i class="bi bi-check2-circle"></i> Downloaded!';
+    setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 2800);
+  }).catch(() => { document.body.removeChild(wrap); btn.innerHTML = orig; btn.disabled = false; });
+}
+['dlNav','dlHero','dlAbout','dlContact'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('click', () => downloadResume(el));
+});
+
+/* ─── BG PARTICLES ─── */
+(function() {
+  const cv = document.getElementById('bgc');
+  const sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, .1, 1000);
+  cam.position.z = 50;
+  const rend = new THREE.WebGLRenderer({canvas:cv, alpha:true, antialias:false});
+  rend.setSize(innerWidth, innerHeight); rend.setPixelRatio(Math.min(devicePixelRatio,1.5));
+  function pts(n,col,sp,sz){ const p=new Float32Array(n*3); for(let i=0;i<n*3;i++)p[i]=(Math.random()-.5)*sp;
+    const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.BufferAttribute(p,3));
+    return new THREE.Points(g,new THREE.PointsMaterial({color:col,size:sz,transparent:true,opacity:.45})); }
+  const p1=pts(350,0x00fff0,160,.14), p2=pts(250,0x9b5de5,140,.11), p3=pts(180,0xff2d78,120,.09);
+  sc.add(p1,p2,p3);
+  const gv=[]; for(let i=-14;i<=14;i++){gv.push(-140,0,i*10,140,0,i*10,i*10,0,-140,i*10,0,140);}
+  const gg=new THREE.BufferGeometry(); gg.setAttribute('position',new THREE.Float32BufferAttribute(gv,3));
+  const grid=new THREE.LineSegments(gg,new THREE.LineBasicMaterial({color:0x070020,transparent:true,opacity:.6}));
+  grid.position.y=-22; grid.rotation.x=.12; sc.add(grid);
+  let mx=0,my=0; document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;});
+  (function loop(){ requestAnimationFrame(loop); const t=Date.now()*.001;
+    p1.rotation.y=t*.036;p1.rotation.x=t*.018; p2.rotation.y=-t*.024;p2.rotation.z=t*.012; p3.rotation.x=t*.022;p3.rotation.y=-t*.028;
+    cam.position.x+=(mx*5-cam.position.x)*.03; cam.position.y+=(-my*3-cam.position.y)*.03; cam.lookAt(0,0,0); rend.render(sc,cam); })();
+  window.addEventListener('resize',()=>{ cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix(); rend.setSize(innerWidth,innerHeight); });
+})();
+
+/* ════════════════════════════════════════════════
+   HERO 3D — 7-Tech SAP Constellation
+════════════════════════════════════════════════ */
+(function() {
+  const cv = document.getElementById('hc');
+  const sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(50, cv.clientWidth/cv.clientHeight, .1, 1000);
+  cam.position.z = 7;
+  const rend = new THREE.WebGLRenderer({canvas:cv, alpha:true, antialias:true});
+  rend.setSize(cv.clientWidth, cv.clientHeight); rend.setPixelRatio(Math.min(devicePixelRatio,2));
+
+  sc.add(new THREE.AmbientLight(0x050015,4));
+  const lc=new THREE.PointLight(0x00fff0,4,26); lc.position.set(4,4,5); sc.add(lc);
+  const lp=new THREE.PointLight(0x9b5de5,3,26); lp.position.set(-5,-2,4); sc.add(lp);
+  const lk=new THREE.PointLight(0xff2d78,2.5,20); lk.position.set(0,5,-2); sc.add(lk);
+  const lg=new THREE.PointLight(0x00ff88,2,16); lg.position.set(-3,3,6); sc.add(lg);
+
+  const kg=new THREE.TorusKnotGeometry(1.15,.32,220,22,2,3);
+  const km=new THREE.Mesh(kg,new THREE.MeshPhysicalMaterial({color:0x050020,emissive:0x1a0040,emissiveIntensity:.5,metalness:.97,roughness:.03}));
+  sc.add(km);
+  const kw=new THREE.Mesh(kg,new THREE.MeshBasicMaterial({color:0x00fff0,wireframe:true,transparent:true,opacity:.055}));
+  sc.add(kw);
+
+  function mkR(r,col,rx,ry){ const m=new THREE.Mesh(new THREE.TorusGeometry(r,.016,8,128),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.28})); m.rotation.x=rx; if(ry!==undefined)m.rotation.y=ry; sc.add(m); return m; }
+  const r1=mkR(2.0,0x00fff0,Math.PI*.30);
+  const r2=mkR(2.4,0x9b5de5,Math.PI*.50,Math.PI*.30);
+  const r3=mkR(2.8,0xff2d78,Math.PI*.15,Math.PI*.60);
+  const r4=mkR(3.2,0x0496ff,Math.PI*.65,Math.PI*.10);
+  sc.add(new THREE.Mesh(new THREE.IcosahedronGeometry(3.5,1),new THREE.MeshBasicMaterial({color:0x0496ff,wireframe:true,transparent:true,opacity:.04})));
+
+  const dcg=new THREE.BufferGeometry(), dcp=new Float32Array(280*3);
+  for(let i=0;i<280;i++){ const th=Math.random()*Math.PI*2,ph=Math.random()*Math.PI,r=3.2+Math.random()*.8;
+    dcp[i*3]=r*Math.sin(ph)*Math.cos(th); dcp[i*3+1]=r*Math.sin(ph)*Math.sin(th); dcp[i*3+2]=r*Math.cos(ph); }
+  dcg.setAttribute('position',new THREE.BufferAttribute(dcp,3));
+  const dots=new THREE.Points(dcg,new THREE.PointsMaterial({color:0xffffff,size:.030,transparent:true,opacity:.50}));
+  sc.add(dots);
+
+  function rr(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r); ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r); ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath(); }
+
+  function icon(ctx,type,cx,cy,r,fg){ ctx.save(); ctx.translate(cx,cy); ctx.strokeStyle=fg; ctx.fillStyle=fg; ctx.lineWidth=r*.18; ctx.lineCap='round'; ctx.lineJoin='round';
+    switch(type){
+      case 'diamond': ctx.beginPath(); ctx.moveTo(0,-r);ctx.lineTo(r*.78,0);ctx.lineTo(0,r);ctx.lineTo(-r*.78,0); ctx.closePath();ctx.fill(); ctx.fillStyle='rgba(0,0,0,.22)'; ctx.beginPath();ctx.moveTo(0,-r);ctx.lineTo(r*.78,0);ctx.lineTo(0,0);ctx.closePath();ctx.fill(); break;
+      case 'brackets': ctx.font=`bold ${r*2.1}px monospace`; ctx.textAlign='center';ctx.textBaseline='middle'; ctx.fillText('<>',0,r*.1); break;
+      case 'layers': [-.55,0,.55].forEach((dy,i)=>{ ctx.globalAlpha=1-i*.25; ctx.beginPath(); ctx.ellipse(0,dy*r,r*.85,r*.27,0,0,Math.PI*2); ctx.fill(); }); ctx.globalAlpha=1; break;
+      case 'arrow': ctx.beginPath();ctx.moveTo(-r*.82,0);ctx.lineTo(r*.50,0);ctx.stroke(); ctx.beginPath();ctx.moveTo(r*.12,-r*.46);ctx.lineTo(r*.85,0);ctx.lineTo(r*.12,r*.46);ctx.closePath();ctx.fill(); break;
+      case 'classes': ctx.lineWidth=r*.15; ctx.strokeRect(-r*.85,-r*.85,r*.78,r*.78); ctx.strokeRect(-r*.05,-r*.05,r*.88,r*.88); ctx.beginPath();ctx.moveTo(-r*.46,-r*.1);ctx.lineTo(-r*.06,r*.5);ctx.stroke(); break;
+      case 'flame': ctx.beginPath(); ctx.moveTo(0,-r); ctx.bezierCurveTo(r*.6,-r*.4,r*.8,r*.2,r*.3,r*.6); ctx.bezierCurveTo(r*.7,r*.1,r*.2,-r*.3,r*.4,-r*.8); ctx.bezierCurveTo(r*.1,-r*.2,-r*.4,r*.4,0,r); ctx.bezierCurveTo(-r*.8,r*.4,-r*.7,-r*.2,-r*.3,-r*.6); ctx.bezierCurveTo(-r*.6,-r*.8,-r*.3,-r*.9,0,-r); ctx.closePath();ctx.fill(); break;
+      case 'chip': ctx.lineWidth=r*.16; ctx.strokeRect(-r*.52,-r*.52,r*1.04,r*1.04); ctx.fillRect(-r*.26,-r*.26,r*.52,r*.52); ctx.lineWidth=r*.13; [-r*.28,0,r*.28].forEach(o=>{ ctx.beginPath();ctx.moveTo(-r*.52,o);ctx.lineTo(-r*.92,o);ctx.stroke(); ctx.beginPath();ctx.moveTo(r*.52,o);ctx.lineTo(r*.92,o);ctx.stroke(); ctx.beginPath();ctx.moveTo(o,-r*.52);ctx.lineTo(o,-r*.92);ctx.stroke(); ctx.beginPath();ctx.moveTo(o,r*.52);ctx.lineTo(o,r*.92);ctx.stroke(); }); break;
+    } ctx.restore(); }
+
+  function mkBadge(def,sz){ const cv=document.createElement('canvas'); cv.width=cv.height=sz; const ctx=cv.getContext('2d'); ctx.clearRect(0,0,sz,sz);
+    const pad=sz*.09, rrv=sz*.16, bw=sz-pad*2, bh=sz-pad*2, barH=sz*.30;
+    const halo=ctx.createRadialGradient(sz/2,sz/2,sz*.1,sz/2,sz/2,sz*.52);
+    halo.addColorStop(0,def.ac+'55'); halo.addColorStop(1,'transparent');
+    ctx.fillStyle=halo; ctx.beginPath(); ctx.arc(sz/2,sz/2,sz*.52,0,Math.PI*2); ctx.fill();
+    rr(ctx,pad,pad,bw,bh,rrv); ctx.fillStyle=def.bg; ctx.fill();
+    ctx.save(); rr(ctx,pad,pad,bw,barH,rrv); ctx.clip();
+    const bar=ctx.createLinearGradient(pad,pad,pad+bw,pad+barH);
+    bar.addColorStop(0,def.ac); bar.addColorStop(1,def.a2||def.ac);
+    ctx.fillStyle=bar; ctx.fillRect(pad,pad,bw,barH);
+    const sh=ctx.createLinearGradient(pad,pad,pad,pad+barH*.55);
+    sh.addColorStop(0,'rgba(255,255,255,.26)'); sh.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=sh; ctx.fillRect(pad,pad,bw,barH); ctx.restore();
+    icon(ctx,def.ico,sz/2,pad+barH/2,sz*.095,'rgba(255,255,255,.9)');
+    rr(ctx,pad,pad,bw,bh,rrv); ctx.strokeStyle=def.ac+'88'; ctx.lineWidth=sz*.013; ctx.stroke();
+    const bs=ctx.createLinearGradient(pad,pad+barH,pad,pad+bh);
+    bs.addColorStop(0,'rgba(255,255,255,.04)'); bs.addColorStop(1,'rgba(0,0,0,0)');
+    rr(ctx,pad,pad+barH,bw,bh-barH,0); ctx.fillStyle=bs; ctx.fill();
+    const lng=def.lb.length>4; const fsz=lng?sz*.175:sz*.235;
+    ctx.shadowColor='rgba(0,0,0,.4)'; ctx.shadowBlur=sz*.032;
+    ctx.fillStyle='#fff'; ctx.font=`bold ${fsz}px Arial,sans-serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(def.lb,sz/2,pad+barH+(bh-barH)*.42); ctx.shadowBlur=0;
+    ctx.fillStyle=def.ac+'bb'; ctx.font=`${sz*.082}px Arial,sans-serif`;
+    ctx.fillText(def.sub,sz/2,pad+barH+(bh-barH)*.78);
+    ctx.fillStyle=def.ac+'77'; ctx.beginPath(); ctx.arc(pad+sz*.08,pad+barH+sz*.055,sz*.022,0,Math.PI*2); ctx.fill();
+    return new THREE.CanvasTexture(cv); }
+
+  const DEFS=[
+    {lb:'S/4',  sub:'SAP S/4HANA',     bg:'#001433',ac:'#0070F2',a2:'#00A0FF',ico:'diamond', lc:0x0070F2,sz:1.35,o:{r:3.80,spd:.140,ph:0,              inc:.35, lan:.00}},
+    {lb:'ABAP', sub:'Core ABAP',        bg:'#001A10',ac:'#00C853',a2:'#69F0AE',ico:'brackets',lc:0x00C853,sz:1.20,o:{r:3.50,spd:.200,ph:Math.PI*.29,    inc:1.10,lan:.55}},
+    {lb:'CDS',  sub:'Core Data Svc',    bg:'#001520',ac:'#00BCD4',a2:'#84FFFF',ico:'layers',  lc:0x00BCD4,sz:1.12,o:{r:3.30,spd:.240,ph:Math.PI*.57,    inc:.65, lan:1.10}},
+    {lb:'OData',sub:'REST / API',       bg:'#1A0C00',ac:'#FF6D00',a2:'#FFD740',ico:'arrow',   lc:0xFF6D00,sz:1.12,o:{r:3.60,spd:.180,ph:Math.PI*.86,    inc:1.55,lan:1.65}},
+    {lb:'OOPs', sub:'Object-Oriented',  bg:'#110020',ac:'#AA00FF',a2:'#EA80FC',ico:'classes', lc:0xAA00FF,sz:1.10,o:{r:3.40,spd:.220,ph:Math.PI*1.14,   inc:.50, lan:2.20}},
+    {lb:'AMDP', sub:'Managed DB Proc',  bg:'#1A0005',ac:'#FF1744',a2:'#FF6E6E',ico:'flame',   lc:0xFF1744,sz:1.08,o:{r:3.70,spd:.170,ph:Math.PI*1.43,   inc:1.30,lan:2.75}},
+    {lb:'HANA', sub:'In-Memory DB',     bg:'#0A0A00',ac:'#FFD600',a2:'#FFFF8D',ico:'chip',    lc:0xFFD600,sz:1.28,o:{r:4.00,spd:.120,ph:Math.PI*1.71,   inc:.85, lan:3.30}}
+  ];
+
+  const badges = DEFS.map(d => {
+    const tx=mkBadge(d,512), sm=mkBadge(d,128);
+    const pl=new THREE.Mesh(new THREE.PlaneGeometry(d.sz,d.sz),new THREE.MeshBasicMaterial({map:tx,transparent:true,opacity:.92,depthWrite:false,side:THREE.DoubleSide}));
+    sc.add(pl);
+    pl.add(new THREE.Mesh(new THREE.PlaneGeometry(d.sz,d.sz),new THREE.MeshBasicMaterial({map:sm,transparent:true,opacity:.13,depthWrite:false,side:THREE.BackSide})));
+    const lt=new THREE.PointLight(d.lc,2.8,10); sc.add(lt);
+    const wg=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0,0)]);
+    const wr=new THREE.Line(wg,new THREE.LineBasicMaterial({color:d.lc,transparent:true,opacity:.15}));
+    sc.add(wr);
+    return {pl,lt,wr,d};
+  });
+
+  function orb(t,o){ const th=t*o.spd+o.ph, px=o.r*Math.cos(th), py=o.r*Math.sin(th);
+    const cI=Math.cos(o.inc),cL=Math.cos(o.lan),sL=Math.sin(o.lan);
+    const ox=px, oy=py*cI, oz=py*Math.sin(o.inc);
+    return {x:ox*cL+oz*sL, y:oy, z:-ox*sL+oz*cL}; }
+
+  let hx=0,hy=0;
+  document.addEventListener('mousemove',e=>{ const rc=cv.getBoundingClientRect(); if(!rc.width)return;
+    hx=((e.clientX-rc.left)/rc.width-.5)*2; hy=-((e.clientY-rc.top)/rc.height-.5)*2; });
+
+  (function loop(){ requestAnimationFrame(loop); const t=Date.now()*.001;
+    km.rotation.x+=(hy*.5-km.rotation.x)*.05; km.rotation.y+=(hx*.5+t*.28-km.rotation.y)*.05; kw.rotation.copy(km.rotation);
+    r1.rotation.z=t*.42; r2.rotation.z=-t*.28;r2.rotation.y=t*.17; r3.rotation.z=t*.19;r3.rotation.x=Math.PI*.15+t*.09; r4.rotation.z=-t*.14;r4.rotation.y=t*.21;
+    dots.rotation.y=t*.11; dots.rotation.z=t*.055;
+    lc.position.set(Math.sin(t*.8)*5,Math.cos(t*.6)*4,lc.position.z);
+    lp.position.set(Math.cos(t*.5)*5,lp.position.y,Math.sin(t*.7)*4);
+    lk.position.set(Math.sin(t*.4)*4,Math.cos(t*.35)*5,lk.position.z);
+    lg.position.set(Math.cos(t*.6)*3,Math.sin(t*.5)*4,lg.position.z);
+    badges.forEach(({pl,lt,wr,d},i)=>{
+      const p=orb(t,d.o); pl.position.set(p.x,p.y,p.z);
+      pl.rotation.y=Math.sin(t*.18+d.o.ph)*.42; pl.rotation.x=Math.sin(t*.12+d.o.ph*.7)*.18;
+      lt.position.copy(pl.position); lt.intensity=2.2+Math.sin(t*1.4+i*.9)*1.0;
+      const wp=wr.geometry.attributes.position; wp.setXYZ(0,p.x,p.y,p.z); wp.setXYZ(1,0,0,0); wp.needsUpdate=true;
+      wr.material.opacity=.07+.12/(1+pl.position.length()*.25);
+    });
+    rend.render(sc,cam); })();
+
+  window.addEventListener('resize',()=>{ const w=cv.parentElement.clientWidth,h=cv.parentElement.clientHeight;
+    if(w>0&&h>0){cam.aspect=w/h;cam.updateProjectionMatrix();rend.setSize(w,h);} });
+})();
+
+/* ─── DIVIDER 3D ─── */
+(function() {
+  const cv=document.getElementById('dvc');
+  const sc=new THREE.Scene(), cam=new THREE.PerspectiveCamera(45,cv.clientWidth/cv.clientHeight,.1,1000);
+  cam.position.z=20;
+  const rend=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
+  rend.setSize(cv.clientWidth,cv.clientHeight); rend.setPixelRatio(Math.min(devicePixelRatio,1.5));
+
+  sc.add(new THREE.AmbientLight(0x0a0020,2));
+  const dl1=new THREE.PointLight(0x00fff0,3.5,35); dl1.position.set(8,5,8); sc.add(dl1);
+  const dl2=new THREE.PointLight(0xff2d78,2.5,35); dl2.position.set(-8,-5,6); sc.add(dl2);
+  sc.add(new THREE.PointLight(0x9b5de5,2,25));
+
+  const DEFS2=[
+    {lb:'S/4',  bg:'#001433',ac:'#0070F2',a2:'#00A0FF',ico:'diamond', lc:0x0070F2},
+    {lb:'ABAP', bg:'#001A10',ac:'#00C853',a2:'#69F0AE',ico:'brackets',lc:0x00C853},
+    {lb:'CDS',  bg:'#001520',ac:'#00BCD4',a2:'#84FFFF',ico:'layers',  lc:0x00BCD4},
+    {lb:'OData',bg:'#1A0C00',ac:'#FF6D00',a2:'#FFD740',ico:'arrow',   lc:0xFF6D00},
+    {lb:'OOPs', bg:'#110020',ac:'#AA00FF',a2:'#EA80FC',ico:'classes', lc:0xAA00FF},
+    {lb:'AMDP', bg:'#1A0005',ac:'#FF1744',a2:'#FF6E6E',ico:'flame',   lc:0xFF1744},
+    {lb:'HANA', bg:'#0A0A00',ac:'#FFD600',a2:'#FFFF8D',ico:'chip',    lc:0xFFD600}
+  ];
+
+  function rr(ctx,x,y,w,h,rv){ ctx.beginPath(); ctx.moveTo(x+rv,y);ctx.lineTo(x+w-rv,y);ctx.quadraticCurveTo(x+w,y,x+w,y+rv);ctx.lineTo(x+w,y+h-rv);ctx.quadraticCurveTo(x+w,y+h,x+w-rv,y+h);ctx.lineTo(x+rv,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-rv);ctx.lineTo(x,y+rv);ctx.quadraticCurveTo(x,y,x+rv,y);ctx.closePath(); }
+  function icon2(ctx,type,cx,cy,r,fg){ ctx.save(); ctx.translate(cx,cy); ctx.strokeStyle=fg;ctx.fillStyle=fg; ctx.lineWidth=r*.18;ctx.lineCap='round';ctx.lineJoin='round';
+    switch(type){
+      case 'diamond': ctx.beginPath();ctx.moveTo(0,-r);ctx.lineTo(r*.78,0);ctx.lineTo(0,r);ctx.lineTo(-r*.78,0);ctx.closePath();ctx.fill(); break;
+      case 'brackets': ctx.font=`bold ${r*2.1}px monospace`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('<>',0,r*.1); break;
+      case 'layers': [-.55,0,.55].forEach((dy,i)=>{ctx.globalAlpha=1-i*.25;ctx.beginPath();ctx.ellipse(0,dy*r,r*.85,r*.27,0,0,Math.PI*2);ctx.fill();}); ctx.globalAlpha=1; break;
+      case 'arrow': ctx.beginPath();ctx.moveTo(-r*.82,0);ctx.lineTo(r*.50,0);ctx.stroke(); ctx.beginPath();ctx.moveTo(r*.12,-r*.46);ctx.lineTo(r*.85,0);ctx.lineTo(r*.12,r*.46);ctx.closePath();ctx.fill(); break;
+      case 'classes': ctx.lineWidth=r*.15;ctx.strokeRect(-r*.85,-r*.85,r*.78,r*.78);ctx.strokeRect(-r*.05,-r*.05,r*.88,r*.88); break;
+      case 'flame': ctx.beginPath();ctx.moveTo(0,-r);ctx.bezierCurveTo(r*.6,-r*.4,r*.8,r*.2,r*.3,r*.6);ctx.bezierCurveTo(r*.7,r*.1,r*.2,-r*.3,r*.4,-r*.8);ctx.bezierCurveTo(r*.1,-r*.2,-r*.4,r*.4,0,r);ctx.bezierCurveTo(-r*.8,r*.4,-r*.7,-r*.2,-r*.3,-r*.6);ctx.bezierCurveTo(-r*.6,-r*.8,-r*.3,-r*.9,0,-r);ctx.closePath();ctx.fill(); break;
+      case 'chip': ctx.lineWidth=r*.16;ctx.strokeRect(-r*.52,-r*.52,r*1.04,r*1.04);ctx.fillRect(-r*.26,-r*.26,r*.52,r*.52); break;
+    } ctx.restore(); }
+
+  function mkDB(d,sz){ const cv=document.createElement('canvas'); cv.width=cv.height=sz; const ctx=cv.getContext('2d'); ctx.clearRect(0,0,sz,sz);
+    const pad=sz*.09,rvv=sz*.16,bw=sz-pad*2,bh=sz-pad*2,barH=sz*.30;
+    const halo=ctx.createRadialGradient(sz/2,sz/2,sz*.1,sz/2,sz/2,sz*.52);
+    halo.addColorStop(0,d.ac+'55'); halo.addColorStop(1,'transparent');
+    ctx.fillStyle=halo; ctx.beginPath();ctx.arc(sz/2,sz/2,sz*.52,0,Math.PI*2);ctx.fill();
+    rr(ctx,pad,pad,bw,bh,rvv); ctx.fillStyle=d.bg;ctx.fill();
+    ctx.save(); rr(ctx,pad,pad,bw,barH,rvv); ctx.clip();
+    const bar=ctx.createLinearGradient(pad,pad,pad+bw,pad+barH);
+    bar.addColorStop(0,d.ac); bar.addColorStop(1,d.a2||d.ac);
+    ctx.fillStyle=bar; ctx.fillRect(pad,pad,bw,barH); ctx.restore();
+    icon2(ctx,d.ico,sz/2,pad+barH/2,sz*.09,'rgba(255,255,255,.9)');
+    rr(ctx,pad,pad,bw,bh,rvv); ctx.strokeStyle=d.ac+'88';ctx.lineWidth=sz*.013;ctx.stroke();
+    const fsz=d.lb.length>4?sz*.19:sz*.26;
+    ctx.shadowColor='rgba(0,0,0,.4)';ctx.shadowBlur=sz*.03;
+    ctx.fillStyle='#fff';ctx.font=`bold ${fsz}px Arial,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(d.lb,sz/2,sz/2+barH*.18); ctx.shadowBlur=0;
+    return new THREE.CanvasTexture(cv); }
+
+  const dvB=DEFS2.map((d,i)=>{
+    const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:mkDB(d,160),transparent:true,opacity:.78}));
+    sp.scale.set(2.4,2.4,1);
+    const ang=(i/(DEFS2.length-1))*Math.PI*1.1-Math.PI*.55;
+    sp.position.set(Math.sin(ang)*9.8,Math.cos(ang)*1.1,-.4); sc.add(sp);
+    const lt=new THREE.PointLight(d.lc,1.4,15); lt.position.copy(sp.position); sc.add(lt);
+    return {sp,lt,ang};
+  });
+
+  const geo=[];
+  [[new THREE.OctahedronGeometry(.85),0x00fff0],[new THREE.IcosahedronGeometry(.70),0x9b5de5],
+   [new THREE.TetrahedronGeometry(.80),0xff2d78],[new THREE.OctahedronGeometry(.58),0x0496ff],
+   [new THREE.IcosahedronGeometry(.52),0x00ff88],[new THREE.TetrahedronGeometry(.62),0xFFD600]
+  ].forEach(([g,col],i)=>{
+    const m=new THREE.MeshPhysicalMaterial({color:col,emissive:col,emissiveIntensity:.4,metalness:.9,roughness:.1});
+    const sm=new THREE.Mesh(g,m), sw=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:col,wireframe:true,transparent:true,opacity:.26}));
+    sm.position.set((i-2.5)*4.1,-1.6,1); sw.position.copy(sm.position); sc.add(sm,sw);
+    geo.push({sm,sw,spd:.42+Math.random()*.44,off:Math.random()*Math.PI*2});
+  });
+
+  let act=false;
+  new IntersectionObserver(([e])=>{act=e.isIntersecting;}).observe(document.querySelector('.dv3'));
+
+  (function loop(){ requestAnimationFrame(loop); if(!act)return; const t=Date.now()*.001;
+    geo.forEach(({sm,sw,spd,off})=>{ sm.rotation.x=t*spd*.4+off; sm.rotation.y=t*spd*.6; sw.rotation.copy(sm.rotation); sm.position.y=-1.6+Math.sin(t*spd+off)*.5; sw.position.y=sm.position.y; });
+    dvB.forEach(({sp,lt,ang},i)=>{ sp.position.y=Math.cos(ang)*1.1+Math.sin(t*.55+i*.9)*.32; sp.material.rotation=Math.sin(t*.22+i*.5)*.1; sp.material.opacity=.62+Math.sin(t*.85+i*.7)*.16; lt.position.copy(sp.position); lt.intensity=1.0+Math.sin(t*1.2+i*.8)*.48; });
+    dl1.position.x=Math.sin(t*.4)*10; dl2.position.x=Math.cos(t*.3)*10;
+    rend.render(sc,cam); })();
+
+  window.addEventListener('resize',()=>{ const w=cv.parentElement.clientWidth,h=cv.parentElement.clientHeight;
+    if(w>0&&h>0){cam.aspect=w/h;cam.updateProjectionMatrix();rend.setSize(w,h);} });
+})();
+
+/* ─── SCROLL REVEALS ─── */
+const io1=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io1.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.fs').forEach(el=>io1.observe(el));
+const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.fu').forEach(el=>io2.observe(el));
+const io3=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.pf').forEach(b=>{b.style.width=b.dataset.w+'%';});io3.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('#pw').forEach(el=>io3.observe(el));
+</script>
 </body>
 </html>
-
-
-
-
-
